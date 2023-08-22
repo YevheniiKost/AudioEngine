@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be86db67add442638873eb86fbb9020b, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  Parameters:
+  - SoundType: 0
+    Volume: 0.17176464
+    IsSoundOn: 1
+    AllClips:
+    - name: clip_1
+      Clip: {fileID: 8300000, guid: 262a069f0c6981d4caab45fcd7ecfa6e, type: 3}
+    - name: clip_2
+      Clip: {fileID: 8300000, guid: 33ee371ca46f93d4e86e31f9cb3f7d9e, type: 3}
+  - SoundType: 1
+    Volume: 1
+    IsSoundOn: 1
+    AllClips:
+    - name: button_1
+      Clip: {fileID: 8300000, guid: 31f764525577463499bc15eef96e3047, type: 3}
+    - name: openWindow
+      Clip: {fileID: 8300000, guid: 5b79182803edf564e8a7fd03db8e80a3, type: 3}
+    - name: tick
+      Clip: {fileID: 8300000, guid: a63b6c288a73b3a449b7ea1df8631fe3, type: 3}
+    - name: coin_tick
+      Clip: {fileID: 8300000, guid: c6386ef82929f464a88488456330e817, type: 3}
+    - name: star
+      Clip: {fileID: 8300000, guid: a8b24d71f2c192c409b1b41f2fe2a773, type: 3}
+  - SoundType: 2
+    Volume: 1
+    IsSoundOn: 1
+    AllClips:
+    - name: tile_move
+      Clip: {fileID: 8300000, guid: 625ad317b451ec147984e94636d712a6, type: 3}
+    - name: tile_scale
+      Clip: {fileID: 8300000, guid: e27156bdebdfa51449d57ffed4b3a5b1, type: 3}
+    - name: level_complete
+      Clip: {fileID: 8300000, guid: d667b0486a48ac14f89ba454a70f3f33, type: 3}
+    - name: right_place
+      Clip: {fileID: 8300000, guid: 966c2ef1a47ad6042bbb62d3f5ae302a, type: 3}
+    - name: tile_appear
+      Clip: {fileID: 8300000, guid: 76005c88290827a468702acfc3ed8700, type: 3}
+    - name: streak_3
+      Clip: {fileID: 8300000, guid: ad59f5a14b4f049789aa350b9c608f20, type: 3}
+    - name: streak_4
+      Clip: {fileID: 8300000, guid: d923860589a0748e981a2145fbc32489, type: 3}
+    - name: streak_5
+      Clip: {fileID: 8300000, guid: 7096c237e384d435ab4bf80e18bf6a18, type: 3}
