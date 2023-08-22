@@ -1,0 +1,14 @@
+{
+  "name": "com.YellowTape.AudioEngine",
+  "version": "1.0.0",
+  "displayName": "Audio Engine",
+  "description": "Small audio engine for unity projects",
+  "unity": "2021.1",
+  "unityRelease": "0b5",
+  "documentationUrl": "https://github.com/YevheniiKost/AudioEngine",
+  "dependencies": { },
+  "author": {
+    "name": "Yevhenii Kostenko",
+    "email": "kostenko.ye@gmail.com"
+  }
+}
