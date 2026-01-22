@@ -1,45 +1,51 @@
-using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-namespace YellowTape.AudioEngine
+namespace YeKostenko.AudioEngine
 {
-    public class SoundComponent : MonoBehaviour
+    public abstract class SoundComponent : MonoBehaviour
     {
-        public SoundType SoundType;
-        public string Name = "";
-        
-        private float _soundLength;
-        private Coroutine _playCoroutine;
+        [Header("Audio Event")]
+        [SerializeField]
+        private AudioEvent _audioEvent;
 
-        public void Play()
+        [Header("Play Settings")]
+        [SerializeField]
+        private bool _playOnStart = false;
+
+        [Header("Optional Settings")]
+        [SerializeField]
+        [Range(0, 1f)]
+        private float _volumeMultiplier = 1;
+        [SerializeField]
+        [Min(0f)]
+        private float _pitchMultiplier = 1;
+        [SerializeField]
+        [Min(0f)]
+        private float _delay;
+        [SerializeField]
+        private int _priority = -1;
+
+        public AudioEvent AudioEvent => _audioEvent;
+
+        protected PlayParams GetPlayParams => new PlayParams
         {
-            if (_playCoroutine != null)
-                StopCoroutine(_playCoroutine);
-            _playCoroutine = StartCoroutine(PlayCoroutine());
-        }
+            VolumeMul = _volumeMultiplier,
+            PitchMul = _pitchMultiplier,
+            Delay = _delay,
+            Priority = _priority >= 0 ? _priority : null
+        };
+
+        [ContextMenu("Play One Shot")]
+        public void PlayOneShot() => Play();
+
+        public abstract PlayHandle Play(PlayParams parameters = null);
         
         private void Start()
         {
-            _soundLength = MyAudio.Engine.GetClipLength(SoundType, Name);
+            if (_playOnStart)
+            {
+                Play();
+            }
         }
-
-        private IEnumerator PlayCoroutine()
-        {
-            MyAudio.Engine.PlayClip(SoundType, Name);
-            yield return new WaitForSeconds(_soundLength);
-            _playCoroutine = null;
-        }
-        
-#if UNITY_EDITOR
-        public void AutoConnectToButtonComponent()
-        {
-            var button = GetComponent<Button>();
-            if (button == null)
-                return;
-            UnityEditor.Events.UnityEventTools.AddPersistentListener(button.onClick, Play);
-        }
-#endif
-        
     }
 }
