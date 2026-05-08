@@ -8,7 +8,8 @@ namespace YeKostenko.AudioEngine
         [SerializeField]
         private bool _followTransform = false;
 
-        public override PlayHandle Play(PlayParams parameters = null)
+
+        protected override PlayHandle Play(PlayParams parameters = null)
         {
             if (AudioEvent == null)
             {
@@ -28,6 +29,15 @@ namespace YeKostenko.AudioEngine
             return _followTransform ?
                 Sound.PlayFollow(AudioEvent, transform, parameters) :
                 Sound.PlayAt(AudioEvent, transform.position, parameters);
+        }
+
+        private void OnDestroy()
+        {
+            if (PlayHandle.IsValid && _followTransform)
+            {
+                PlayHandle.SetFollow(null);
+                PlayHandle.Stop();
+            }
         }
     }
 }

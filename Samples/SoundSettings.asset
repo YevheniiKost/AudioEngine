@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prewarmSources: 10
   _masterGroup: {fileID: 24300002, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
-  _defaultSfxGroup: {fileID: 5213486687548514994, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
+  _defaultSfxGroup: {fileID: -2980932358157563002, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
   _defaultUiGroup: {fileID: 6308434651724371779, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
   _defaultAmbienceGroup: {fileID: 5213486687548514994, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
   _defaultVoiceGroup: {fileID: -2722749919301544191, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
   _defaultMusicGroup: {fileID: 6992801463660439498, guid: 977c96553a53aca4597c2cb354b9dfd1, type: 2}
   _defaultMusicFade: 0.35
+  _defaultMusicCrossfade: 1

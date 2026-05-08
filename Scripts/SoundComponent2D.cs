@@ -4,7 +4,7 @@ namespace YeKostenko.AudioEngine
 {
     public class SoundComponent2D : SoundComponent
     {
-        public override PlayHandle Play(PlayParams parameters = null)
+        protected override PlayHandle Play(PlayParams parameters = null)
         {
             if(AudioEvent == null)
             {

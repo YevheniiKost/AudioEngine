@@ -280,6 +280,7 @@ namespace YeKostenko.AudioEngine
             voice.State = VoiceState.Stopping;
             voice.FadeOutDuration = Mathf.Max(0f, fadeOut);
             voice.FadeOutStartTime = Time.time;
+            voice.HasFadeOut = voice.FadeOutDuration > 0f;
 
             if (voice.FadeOutDuration <= 0f)
             {
@@ -586,7 +587,7 @@ namespace YeKostenko.AudioEngine
                 float elapsedTime = currentTime - voice.FadeInStartTime;
                 if (elapsedTime < voice.FadeInDuration)
                 {
-                    float fadeProgress = elapsedTime / voice.FadeInDuration;
+                    float fadeProgress = Mathf.Clamp01(elapsedTime / voice.FadeInDuration);
                     finalVolume *= fadeProgress;
                 }
                 else
@@ -597,16 +598,19 @@ namespace YeKostenko.AudioEngine
 
             if (voice.HasFadeOut)
             {
-                float elapsedTime = currentTime - voice.FadeOutStartTime;
-                if (elapsedTime < voice.FadeOutDuration)
+                if (currentTime >= voice.FadeOutStartTime)
                 {
-                    voice.State = VoiceState.Stopping;
-                    float fadeProgress = 1f - (elapsedTime / voice.FadeOutDuration);
-                    finalVolume *= fadeProgress;
-                }
-                else
-                {
-                    finalVolume = 0f;
+                    float elapsedTime = currentTime - voice.FadeOutStartTime;
+                    if (elapsedTime < voice.FadeOutDuration)
+                    {
+                        voice.State = VoiceState.Stopping;
+                        float fadeProgress = 1f - Mathf.Clamp01(elapsedTime / voice.FadeOutDuration);
+                        finalVolume *= fadeProgress;
+                    }
+                    else
+                    {
+                        finalVolume = 0f;
+                    }
                 }
             }
 

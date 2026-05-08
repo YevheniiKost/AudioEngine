@@ -25,7 +25,10 @@ namespace YeKostenko.AudioEngine
         [SerializeField]
         private int _priority = -1;
 
+        private PlayHandle _playHandle;
+
         public AudioEvent AudioEvent => _audioEvent;
+        protected PlayHandle PlayHandle => _playHandle;
 
         protected PlayParams GetPlayParams => new PlayParams
         {
@@ -36,15 +39,18 @@ namespace YeKostenko.AudioEngine
         };
 
         [ContextMenu("Play One Shot")]
-        public void PlayOneShot() => Play();
+        public void PlayOneShot()
+        {
+            _playHandle = Play();
+        }
 
-        public abstract PlayHandle Play(PlayParams parameters = null);
-        
+        protected abstract PlayHandle Play(PlayParams parameters = null);
+
         private void Start()
         {
             if (_playOnStart)
             {
-                Play();
+                _playHandle = Play();
             }
         }
     }
