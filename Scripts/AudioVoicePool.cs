@@ -277,8 +277,10 @@ namespace YeKostenko.AudioEngine
                 return;
             }
 
+            float resolvedFadeOut = ResolveFadeOut(voice, fadeOut);
+
             voice.State = VoiceState.Stopping;
-            voice.FadeOutDuration = Mathf.Max(0f, fadeOut);
+            voice.FadeOutDuration = resolvedFadeOut;
             voice.FadeOutStartTime = Time.time;
             voice.HasFadeOut = voice.FadeOutDuration > 0f;
 
@@ -286,6 +288,22 @@ namespace YeKostenko.AudioEngine
             {
                 voice.Source.Stop();
             }
+        }
+
+        private static float ResolveFadeOut(AudioVoice voice, float requestedFadeOut)
+        {
+            if (requestedFadeOut >= 0f)
+            {
+                return Mathf.Max(0f, requestedFadeOut);
+            }
+
+            AudioEvent audioEvent = voice.Event;
+            if (audioEvent != null && audioEvent.Fade != null && audioEvent.Fade.HasFadeOut && audioEvent.Fade.Out > 0f)
+            {
+                return audioEvent.Fade.Out;
+            }
+
+            return 0f;
         }
 
         public void SetVoiceVolume(int id, float volume01)
@@ -320,6 +338,22 @@ namespace YeKostenko.AudioEngine
 
             voice.BasePitch = pitch;
             voice.Source.pitch = pitch;
+        }
+
+        public float GetVoicePitch(int id)
+        {
+            if (id < 0 || id >= _voices.Length)
+            {
+                return 1f;
+            }
+
+            AudioVoice voice = _voices[id];
+            if (voice.State == VoiceState.Free)
+            {
+                return 1f;
+            }
+
+            return voice.BasePitch;
         }
 
         public void SetVoicePaused(int id, bool paused)

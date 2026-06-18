@@ -33,11 +33,13 @@ namespace YeKostenko.AudioEngine
 
         private void OnDestroy()
         {
-            if (PlayHandle.IsValid && _followTransform)
+            if (!PlayHandle.IsValid || !_followTransform)
             {
-                PlayHandle.SetFollow(null);
-                PlayHandle.Stop();
+                return;
             }
+
+            PlayHandle.SetFollow(null);
+            PlayHandle.Stop();
         }
     }
 }

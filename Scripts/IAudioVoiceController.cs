@@ -9,6 +9,7 @@ namespace YeKostenko.AudioEngine
         void Stop(int id, float fadeOut);
         void SetVolume(int id, float volume01);
         void SetPitch(int id, float pitch);
+        float GetPitch(int id);
         void SetPaused(int id, bool paused);
         void SetFollow(int id, Transform follow);
 

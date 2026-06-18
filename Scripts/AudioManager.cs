@@ -176,6 +176,8 @@ namespace YeKostenko.AudioEngine
 
         void IAudioVoiceController.SetPitch(int id, float pitch) => _voicePool.SetVoicePitch(id, pitch);
 
+        float IAudioVoiceController.GetPitch(int id) => _voicePool.GetVoicePitch(id);
+
         void IAudioVoiceController.SetPaused(int id, bool paused) => _voicePool.SetVoicePaused(id, paused);
 
         void IAudioVoiceController.SetFollow(int id, Transform follow) => _voicePool.SetVoiceFollow(id, follow);

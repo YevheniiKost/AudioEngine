@@ -24,7 +24,7 @@ namespace YeKostenko.AudioEngine
             _controller != null &&
             _controller.IsValid(_id, _version);
 
-        public void Stop(float fadeOut = 0f)
+        public void Stop(float fadeOut = -1f)
         {
             if (!IsValid)
             {
@@ -52,6 +52,16 @@ namespace YeKostenko.AudioEngine
             }
 
             _controller.SetPitch(_id, pitch);
+        }
+
+        public float GetPitch()
+        {
+            if (!IsValid)
+            {
+                return 1f;
+            }
+
+            return _controller.GetPitch(_id);
         }
 
         public void SetPaused(bool paused)
