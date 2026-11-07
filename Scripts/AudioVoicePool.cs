@@ -84,13 +84,27 @@ namespace YeKostenko.AudioEngine
 
         private void UpdateVoicePosition(AudioVoice voice)
         {
-            if (voice.HasFollow)
+            if (voice.HasFollow && voice.FollowTransform == null)
+            {
+                ReleaseDestroyedFollow(voice);
+            }
+            else if (voice.HasFollow)
             {
                 voice.Source.transform.position = voice.FollowTransform.position;
             }
             else if (voice.HasEvent && voice.Event.Spatial.Is3D && voice.State != VoiceState.Free)
             {
                 voice.Source.transform.position = voice.StaticPosition;
+            }
+        }
+
+        private void ReleaseDestroyedFollow(AudioVoice voice)
+        {
+            voice.FollowTransform = null;
+
+            if (voice.HasEvent && voice.Event.Loop)
+            {
+                StopVoice(voice.Id, -1f);
             }
         }
 
