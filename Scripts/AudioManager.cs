@@ -119,6 +119,11 @@ namespace YeKostenko.AudioEngine
         {
             _busManager.SetVolume(bus, volume01);
             _voicePool.OnBusVolumeChanged(bus);
+
+            if (bus == SoundBus.Music)
+            {
+                _musicPlayer.ApplyBusVolume();
+            }
         }
 
         public bool IsBusPaused(SoundBus bus) => _busManager.IsPaused(bus);

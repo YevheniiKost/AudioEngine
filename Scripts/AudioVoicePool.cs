@@ -124,7 +124,7 @@ namespace YeKostenko.AudioEngine
         {
             if (voice.State != VoiceState.Starting && voice.HasEvent && !voice.Event.Loop)
             {
-                if (!voice.Source.isPlaying && !voice.HasDelayedStart)
+                if (!voice.Source.isPlaying && !voice.HasDelayedStart && !_busManager.IsEffectivelyPaused(voice.Bus))
                 {
                     return true;
                 }

@@ -231,6 +231,11 @@ namespace YeKostenko.AudioEngine
             _currentSource.volume = _targetVolume * busVolume;
         }
 
+        public void ApplyBusVolume()
+        {
+            SetVolume(_targetVolume);
+        }
+
         public void SetPaused(bool paused)
         {
             if (paused)
